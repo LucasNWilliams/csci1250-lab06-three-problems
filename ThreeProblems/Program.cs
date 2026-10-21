@@ -1,4 +1,7 @@
-﻿int userChoice;
+﻿using System.Net;
+
+Random rng = new Random(4000);
+int userChoice;
 
 // do while: app should run once, then give the user the option to either terminate or loop the app
 do {
@@ -25,7 +28,7 @@ do {
     if (userChoice == 1 || userChoice == 4)
     {
         
-        Console.WriteLine("=== Excercise 1: The Grade Checker");
+        Console.WriteLine("\n=== Excercise 1: The Grade Checker ===");
 
         Console.Write("Score: ");
         int score = Convert.ToInt32(Console.ReadLine());
@@ -56,18 +59,53 @@ do {
             letterGrade = "a D";
         }
 
-        Console.WriteLine($"{score} earns {letterGrade}.");
+        Console.WriteLine($"\n{score} earns {letterGrade}.");
 
     }
 
     if (userChoice == 2 || userChoice == 4)
     {
-        Excercise2();
+        Console.WriteLine("\n=== Excecise 2: The Dice Table ===");
+
+        int totalRolls = 0;
+        int totalWins = 0;
+        string response = "";
+        // do while: user must roll dice at least once, and they must be asked to roll again. Only if they decline will they exit.
+        do
+        {
+            int roll1 = rng.Next(1, 7);
+            int roll2 = rng.Next(1, 7);
+            int total = roll1 + roll2;
+            
+            totalRolls++;
+
+            string result = "";
+            if (roll1 == 1 && roll2 == 1 )
+            {
+                result = " Snake eyes.";
+            } 
+            else if (roll1 == roll2)
+            {
+                result = " Doubles!";
+            } 
+            else if (total == 7 || total == 11)
+            {
+                result = " A winner.";
+                totalWins++;
+            }
+
+            Console.WriteLine($"Roll {totalRolls}: {roll1} and {roll2}, total {total}.{result}");
+
+            Console.Write("Roll again? (y/n): ");
+            response = Console.ReadLine().ToUpper();
+        } while (response != "N");
+
+        Console.WriteLine($"\nYou rolled {totalRolls} time{(totalRolls != 1 ? "s" : "")} and won {totalWins}");
     }
 
     if (userChoice == 3 || userChoice == 4)
     {
-        
+        Excercise3();
     }
 
 } while (userChoice != 5);
@@ -76,7 +114,7 @@ Console.WriteLine("\nGoodbye.");
 
 
 
-static void Excercise2()
+static void Excercise3()
 {
     
     
