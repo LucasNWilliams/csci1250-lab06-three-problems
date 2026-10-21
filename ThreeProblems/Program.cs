@@ -2,9 +2,9 @@
 
 // do while: app should run once, then give the user the option to either terminate or loop the app
 do {
-    userChoice = 0;
+    userChoice = 5;
     // The Menu //
-    Console.WriteLine("=== CSCI 1250 Lab 06 ===");
+    Console.WriteLine("\n=== CSCI 1250 Lab 06 ===");
     Console.WriteLine("1. The Grade Checker");
     Console.WriteLine("2. The Dice Table");
     Console.WriteLine("3. The Score Report");
@@ -25,13 +25,44 @@ do {
     if (userChoice == 1 || userChoice == 4)
     {
         
-        Excercise1();
+        Console.WriteLine("=== Excercise 1: The Grade Checker");
+
+        Console.Write("Score: ");
+        int score = Convert.ToInt32(Console.ReadLine());
+
+        // while: If the user's score is invalid, they must be told so and enter a valid input
+        while (score < 0 || score > 100)
+        {
+            Console.WriteLine("A score must be between 0 and 100");
+            Console.Write("Score: ");
+            score = Convert.ToInt32(Console.ReadLine());
+        }
+
+        string letterGrade = "an F";
+        if (score >= 90)
+        {
+            letterGrade = "an A";
+        } 
+        else if (score >= 80)
+        {
+            letterGrade = "a B";
+        }
+        else if (score >= 70)
+        {
+            letterGrade = "a C";
+        }
+        else if (score >= 60)
+        {
+            letterGrade = "a D";
+        }
+
+        Console.WriteLine($"{score} earns {letterGrade}.");
 
     }
 
     if (userChoice == 2 || userChoice == 4)
     {
-        
+        Excercise2();
     }
 
     if (userChoice == 3 || userChoice == 4)
@@ -45,19 +76,9 @@ Console.WriteLine("\nGoodbye.");
 
 
 
-static void Excercise1()
+static void Excercise2()
 {
-    Console.WriteLine("=== Excercise 1: The Grade Checker");
-
-    Console.Write("Score: ");
-    int score = Convert.ToInt32(Console.ReadLine());
-
-    while (score < 0 || score > 100)
-    {
-        Console.WriteLine("A score must be between 0 and 100");
-        Console.Write("Score: ");
-        score = Convert.ToInt32(Console.ReadLine());
-    }
+    
     
 
 }
