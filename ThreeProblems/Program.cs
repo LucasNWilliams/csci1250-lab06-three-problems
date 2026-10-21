@@ -97,7 +97,7 @@ do {
             Console.WriteLine($"Roll {totalRolls}: {roll1} and {roll2}, total {total}.{result}");
 
             Console.Write("Roll again? (y/n): ");
-            response = Console.ReadLine().ToUpper();
+            response = Console.ReadLine()?.ToUpper() ?? "";
         } while (response != "N");
 
         Console.WriteLine($"\nYou rolled {totalRolls} time{(totalRolls != 1 ? "s" : "")} and won {totalWins}");
@@ -105,18 +105,41 @@ do {
 
     if (userChoice == 3 || userChoice == 4)
     {
-        Excercise3();
+        Console.WriteLine("=== Excercise 3: The Score Report ===");
+
+        int[] scores = new int[5];
+
+        for(int i = 0; i < scores.Length; i++)
+        {
+            Console.Write($"Score {i + 1}: ");
+            scores[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+
+        int totaledScores = 0;
+        int highestScore = 0;
+        int totalPassingScores = 0;
+        foreach(int score in scores)
+        {
+            totaledScores += score;
+
+            highestScore = Math.Max(highestScore, score);
+
+            if (score >= 60)
+            {
+                totalPassingScores++;
+            }
+        }
+
+        double averageScore = (double)totaledScores / scores.Length;
+
+        Console.WriteLine($"Scores entered: {scores.Length}");
+        Console.WriteLine($"Total: {totaledScores}");
+        Console.WriteLine($"Average: {averageScore}");
+        Console.WriteLine($"Highest: {highestScore}");
+        Console.WriteLine($"Passing: {totalPassingScores} of {scores.Length}");
     }
 
 } while (userChoice != 5);
 
 Console.WriteLine("\nGoodbye.");
-
-
-
-static void Excercise3()
-{
-    
-    
-
-}
