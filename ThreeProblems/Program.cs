@@ -1,4 +1,12 @@
-﻿using System.Net;
+﻿/*
+* Name:         Lucas Williams
+* Course:       CSCI 1250, Section 002
+* Assignment:   Lab 06, Three Short Problems
+* Date:         October 21, 2026
+* Description:  A menu that keeps running until the user quits, offering three
+*               independent exercises or all three at once. Each exercise
+*               practices decisions and one of the four loops.
+*/
 
 Random rng = new Random(4000);
 int userChoice;
@@ -19,12 +27,12 @@ do {
     // while: If the user's choice is invalid, they must be told so and enter a valid input
     while(userChoice < 1 || userChoice > 5)
     {
-        Console.WriteLine("Choose a number 1 to 5.");
+        Console.WriteLine("Choose a number from 1 to 5.");
         Console.Write("Choose 1 through 5: ");
         userChoice = Convert.ToInt32(Console.ReadLine());
     }
 
-
+    // Exercise 1 //
     if (userChoice == 1 || userChoice == 4)
     {
         
@@ -36,7 +44,7 @@ do {
         // while: If the user's score is invalid, they must be told so and enter a valid input
         while (score < 0 || score > 100)
         {
-            Console.WriteLine("A score must be between 0 and 100");
+            Console.WriteLine("A score must be between 0 and 100.");
             Console.Write("Score: ");
             score = Convert.ToInt32(Console.ReadLine());
         }
@@ -59,17 +67,18 @@ do {
             letterGrade = "a D";
         }
 
-        Console.WriteLine($"\n{score} earns {letterGrade}.");
+        Console.WriteLine($"{score} earns {letterGrade}.");
 
     }
 
+    // Exercise 2 //
     if (userChoice == 2 || userChoice == 4)
     {
         Console.WriteLine("\n=== Excecise 2: The Dice Table ===");
 
         int totalRolls = 0;
         int totalWins = 0;
-        string response = "";
+        string response;
         // do while: user must roll dice at least once, and they must be asked to roll again. Only if they decline will they exit.
         do
         {
@@ -100,15 +109,17 @@ do {
             response = Console.ReadLine()?.ToUpper() ?? "";
         } while (response != "N");
 
-        Console.WriteLine($"\nYou rolled {totalRolls} time{(totalRolls != 1 ? "s" : "")} and won {totalWins}");
+        Console.WriteLine($"You rolled {totalRolls} time{(totalRolls != 1 ? "s" : "")} and won {totalWins}");
     }
 
+    // Excercise 3 //
     if (userChoice == 3 || userChoice == 4)
     {
-        Console.WriteLine("=== Excercise 3: The Score Report ===");
+        Console.WriteLine("\n=== Excercise 3: The Score Report ===");
 
         int[] scores = new int[5];
 
+        // for: must ask for a score to fill up the scores array, so it needs to know which score it is for the position and the question
         for(int i = 0; i < scores.Length; i++)
         {
             Console.Write($"Score {i + 1}: ");
@@ -116,6 +127,7 @@ do {
         }
 
 
+        // foreach: must run the logic for each score in the scores list, but there is no need for an index
         int totaledScores = 0;
         int highestScore = 0;
         int totalPassingScores = 0;
@@ -133,7 +145,7 @@ do {
 
         double averageScore = (double)totaledScores / scores.Length;
 
-        Console.WriteLine($"Scores entered: {scores.Length}");
+        Console.WriteLine($"\nScores entered: {scores.Length}");
         Console.WriteLine($"Total: {totaledScores}");
         Console.WriteLine($"Average: {averageScore}");
         Console.WriteLine($"Highest: {highestScore}");
